@@ -1,0 +1,832 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:#f7f1e8;
+    color:#111;
+    overflow-x:hidden;
+}
+
+.nf-auth-page{
+    width:100%;
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 92% 92%, rgba(200,155,60,0.26), transparent 25%),
+        radial-gradient(circle at 6% 92%, rgba(200,155,60,0.13), transparent 22%),
+        linear-gradient(135deg,#fffdf9,#efe7dc);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:35px 55px;
+}
+
+.nf-auth-brand{
+    position:absolute;
+    top:28px;
+    left:55px;
+    text-decoration:none;
+    color:#111;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:4px;
+    line-height:1;
+    z-index:20;
+}
+
+.nf-auth-brand span{
+    color:#c89b3c;
+}
+
+.nf-auth-brand small{
+    display:block;
+    margin-top:8px;
+    color:#444;
+    font-size:11px;
+    letter-spacing:5px;
+}
+
+.nf-auth-container{
+    width:100%;
+    max-width:1320px;
+    min-height:730px;
+    display:grid;
+    grid-template-columns:1fr 560px;
+    gap:55px;
+    align-items:center;
+    padding-top:70px;
+    position:relative;
+    z-index:5;
+}
+
+/* LEFT PANEL */
+
+.nf-auth-left{
+    min-height:680px;
+    position:relative;
+    overflow:hidden;
+    border-radius:34px;
+    background:rgba(255,255,255,0.48);
+    box-shadow:0 25px 70px rgba(0,0,0,0.08);
+    padding:70px 55px;
+    display:flex;
+    align-items:center;
+}
+
+.nf-auth-left::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,0.9),rgba(255,255,255,0.55));
+    z-index:1;
+}
+
+.nf-left-content{
+    position:relative;
+    z-index:5;
+    width:56%;
+    margin-left:34%;
+}
+
+.nf-mini-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:#c89b3c;
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:22px;
+}
+
+.nf-mini-title span{
+    width:60px;
+    height:2px;
+    background:#c89b3c;
+    display:inline-block;
+}
+
+.nf-left-content h1{
+    font-size:55px;
+    line-height:1.15;
+    color:#111;
+    font-weight:900;
+    margin-bottom:22px;
+}
+
+.nf-left-content h1 strong{
+    color:#c89b3c;
+}
+
+.nf-left-desc{
+    color:#333;
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:34px;
+}
+
+.nf-feature{
+    display:grid;
+    grid-template-columns:55px 1fr;
+    gap:18px;
+    align-items:flex-start;
+    margin-bottom:24px;
+}
+
+.nf-feature i{
+    width:48px;
+    height:48px;
+    border:2px solid #c89b3c;
+    color:#c89b3c;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.nf-feature h4{
+    font-size:17px;
+    font-weight:900;
+    color:#111;
+    margin-bottom:6px;
+}
+
+.nf-feature p{
+    font-size:15px;
+    color:#555;
+    line-height:1.5;
+}
+
+/* CSS FASHION VISUAL */
+
+.nf-fashion-showcase{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:34%;
+    height:82%;
+    z-index:4;
+}
+
+.nf-rack-line{
+    position:absolute;
+    top:50px;
+    left:32px;
+    width:190px;
+    height:8px;
+    background:#b98a32;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.nf-rack-line::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:7px;
+    height:470px;
+    background:#b98a32;
+    border-radius:10px;
+}
+
+.nf-hanger{
+    position:absolute;
+    top:60px;
+    width:2px;
+    height:38px;
+    background:#9a9a9a;
+}
+
+.nf-hanger::before{
+    content:"";
+    position:absolute;
+    top:-14px;
+    left:-10px;
+    width:22px;
+    height:22px;
+    border:2px solid #9a9a9a;
+    border-bottom:none;
+    border-radius:50% 50% 0 0;
+}
+
+.nf-hanger.h1{ left:72px; }
+.nf-hanger.h2{ left:118px; }
+.nf-hanger.h3{ left:164px; }
+
+.nf-cloth{
+    position:absolute;
+    top:102px;
+    border-radius:24px 24px 14px 14px;
+    box-shadow:0 18px 35px rgba(0,0,0,0.12);
+}
+
+.cloth-one{
+    left:42px;
+    width:92px;
+    height:305px;
+    background:linear-gradient(135deg,#d4b089,#b98654);
+}
+
+.cloth-two{
+    left:92px;
+    width:90px;
+    height:330px;
+    background:linear-gradient(135deg,#151515,#3c3c3c);
+}
+
+.cloth-three{
+    left:142px;
+    width:92px;
+    height:285px;
+    background:linear-gradient(135deg,#f4eadb,#d8c4a6);
+}
+
+.nf-bag{
+    position:absolute;
+    left:58px;
+    bottom:52px;
+    width:115px;
+    height:88px;
+    background:#111;
+    border-radius:16px;
+    color:#c89b3c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:44px;
+    box-shadow:0 20px 35px rgba(0,0,0,0.22);
+}
+
+.nf-bag::before{
+    content:"";
+    position:absolute;
+    top:-25px;
+    width:58px;
+    height:40px;
+    border:7px solid #111;
+    border-bottom:none;
+    border-radius:50px 50px 0 0;
+}
+
+.nf-shoe{
+    position:absolute;
+    left:178px;
+    bottom:56px;
+    width:95px;
+    height:52px;
+    background:#fff;
+    border-radius:50px 50px 20px 20px;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    box-shadow:0 16px 28px rgba(0,0,0,0.16);
+}
+
+/* DECOR */
+
+.nf-dot-pattern{
+    position:absolute;
+    top:75px;
+    right:90px;
+    width:105px;
+    height:105px;
+    background-image:radial-gradient(#c89b3c 2px, transparent 2px);
+    background-size:18px 18px;
+    z-index:3;
+}
+
+.nf-gold-ring{
+    position:absolute;
+    border:2px solid rgba(200,155,60,0.55);
+    border-radius:50%;
+    z-index:2;
+}
+
+.ring-one{
+    width:320px;
+    height:320px;
+    left:-105px;
+    bottom:-115px;
+}
+
+.ring-two{
+    width:210px;
+    height:210px;
+    right:-85px;
+    bottom:-75px;
+}
+
+.nf-bg-text{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    z-index:2;
+    font-size:120px;
+    color:rgba(17,17,17,0.035);
+    font-weight:900;
+    letter-spacing:8px;
+}
+
+/* RIGHT PANEL */
+
+.nf-auth-right{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.nf-auth-card{
+    width:100%;
+    max-width:560px;
+    background:rgba(255,255,255,0.95);
+    border:1px solid rgba(255,255,255,0.9);
+    border-radius:28px;
+    padding:50px 56px;
+    box-shadow:0 28px 75px rgba(0,0,0,0.16);
+}
+
+.nf-register-card{
+    padding:38px 52px;
+}
+
+.nf-card-header{
+    text-align:center;
+    margin-bottom:32px;
+}
+
+.nf-card-header h2{
+    font-size:32px;
+    color:#111;
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.nf-card-header p{
+    color:#666;
+    font-size:16px;
+}
+/* BACK TO HOME BUTTON */
+
+.nf-back-home{
+    position:absolute;
+    top:45px;
+    right:55px;
+    z-index:25;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#111;
+    background:rgba(255,255,255,0.95);
+    border:1px solid rgba(200,155,60,0.45);
+    padding:13px 24px;
+    border-radius:35px;
+    font-size:15px;
+    font-weight:900;
+    box-shadow:0 10px 28px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+}
+
+.nf-back-home i{
+    color:#c89b3c;
+}
+
+.nf-back-home:hover{
+    background:#111;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+.nf-back-home:hover i{
+    color:#c89b3c;
+}
+
+/* RESPONSIVE BACK BUTTON */
+
+@media(max-width:760px){
+
+    .nf-back-home{
+        top:92px;
+        left:24px;
+        right:auto;
+        padding:10px 16px;
+        font-size:13px;
+    }
+}
+
+/* ALERT */
+
+.nf-alert{
+    width:100%;
+    min-height:45px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 15px;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.nf-error{
+    background:#fff0f0;
+    color:#b00020;
+    border:1px solid #ffc7c7;
+}
+
+.nf-success{
+    background:#effaf1;
+    color:#157a2c;
+    border:1px solid #b8e6c2;
+}
+
+.nf-auth-form{
+    width:100%;
+}
+
+.nf-input-group,
+.nf-textarea-group{
+    width:100%;
+    min-height:60px;
+    border:1px solid #ddd;
+    border-radius:11px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:0 18px;
+    margin-bottom:18px;
+    transition:0.3s;
+}
+
+.nf-register-card .nf-input-group{
+    min-height:54px;
+    margin-bottom:13px;
+}
+
+.nf-input-group:focus-within,
+.nf-textarea-group:focus-within{
+    border-color:#c89b3c;
+    box-shadow:0 0 0 4px rgba(200,155,60,0.14);
+}
+
+.nf-input-group > i,
+.nf-textarea-group > i{
+    color:#666;
+    font-size:18px;
+    width:22px;
+    text-align:center;
+}
+
+.nf-input-group input{
+    flex:1;
+    width:100%;
+    height:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#111;
+    font-size:16px;
+}
+
+.nf-input-group input::placeholder,
+.nf-textarea-group textarea::placeholder{
+    color:#777;
+}
+
+.nf-textarea-group{
+    min-height:88px;
+    align-items:flex-start;
+    padding-top:17px;
+    margin-bottom:13px;
+}
+
+.nf-textarea-group textarea{
+    flex:1;
+    width:100%;
+    min-height:66px;
+    resize:none;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:16px;
+    color:#111;
+    line-height:1.5;
+}
+
+.nf-eye-btn{
+    border:none;
+    background:transparent;
+    color:#666;
+    font-size:17px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.nf-eye-btn:hover{
+    color:#c89b3c;
+}
+
+.nf-form-options{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:4px 0 28px;
+}
+
+.nf-check{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#444;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.nf-check input{
+    display:none;
+}
+
+.nf-check span{
+    width:21px;
+    height:21px;
+    border:2px solid #aaa;
+    border-radius:4px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.nf-check input:checked + span{
+    background:#c89b3c;
+    border-color:#c89b3c;
+}
+
+.nf-check input:checked + span::after{
+    content:"✓";
+    color:white;
+    font-size:13px;
+    font-weight:900;
+}
+
+.nf-forgot,
+.nf-terms a{
+    color:#c89b3c;
+    text-decoration:none;
+    font-weight:800;
+}
+
+.nf-forgot:hover,
+.nf-terms a:hover{
+    text-decoration:underline;
+}
+
+.nf-terms{
+    margin:4px 0 20px;
+}
+
+.nf-password-error{
+    color:#b00020;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.nf-main-btn{
+    width:100%;
+    height:62px;
+    border:none;
+    border-radius:10px;
+    background:#111;
+    color:#fff;
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 10px 22px rgba(0,0,0,0.18);
+}
+
+.nf-main-btn:hover{
+    background:#c89b3c;
+    transform:translateY(-3px);
+}
+
+.nf-divider{
+    display:grid;
+    grid-template-columns:1fr 46px 1fr;
+    align-items:center;
+    gap:12px;
+    margin:26px 0 20px;
+}
+
+.nf-divider span{
+    height:1px;
+    background:#ddd;
+}
+
+.nf-divider p{
+    width:46px;
+    height:46px;
+    border:1px solid #e0e0e0;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#777;
+    background:#fff;
+    font-size:14px;
+}
+
+.nf-social-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.nf-social-row button{
+    height:55px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:9px;
+    cursor:pointer;
+    color:#555;
+    font-size:14px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:0.3s;
+}
+
+.nf-social-row button:hover{
+    border-color:#c89b3c;
+    color:#111;
+    transform:translateY(-2px);
+}
+
+.nf-social-row .fa-google{
+    color:#ea4335;
+    font-size:20px;
+}
+
+.nf-social-row .fa-facebook-f{
+    color:#1877f2;
+    font-size:20px;
+}
+
+.nf-switch-text{
+    text-align:center;
+    color:#555;
+    font-size:16px;
+    margin-top:26px;
+}
+
+.nf-switch-text a{
+    color:#c89b3c;
+    text-decoration:none;
+    font-weight:900;
+}
+
+.nf-switch-text a:hover{
+    text-decoration:underline;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1180px){
+
+    .nf-auth-page{
+        padding:35px 28px;
+    }
+
+    .nf-auth-container{
+        grid-template-columns:1fr;
+        max-width:800px;
+        gap:35px;
+        padding-top:95px;
+    }
+
+    .nf-auth-left{
+        min-height:560px;
+    }
+
+    .nf-auth-right{
+        width:100%;
+    }
+
+    .nf-auth-card{
+        max-width:100%;
+    }
+}
+
+@media(max-width:760px){
+
+    .nf-auth-page{
+        padding:28px 18px;
+        align-items:flex-start;
+    }
+
+    .nf-auth-brand{
+        top:24px;
+        left:24px;
+        font-size:27px;
+    }
+
+    .nf-auth-brand small{
+        font-size:9px;
+        letter-spacing:3px;
+    }
+
+    .nf-auth-container{
+        padding-top:90px;
+    }
+
+    .nf-auth-left{
+        padding:38px 26px;
+        min-height:auto;
+    }
+
+    .nf-fashion-showcase{
+        display:none;
+    }
+
+    .nf-left-content{
+        margin-left:0;
+        width:100%;
+        max-width:100%;
+    }
+
+    .nf-dot-pattern{
+        top:35px;
+        right:35px;
+    }
+
+    .nf-left-content h1{
+        font-size:38px;
+    }
+
+    .nf-left-desc{
+        font-size:16px;
+    }
+
+    .nf-auth-card,
+    .nf-register-card{
+        padding:34px 24px;
+        border-radius:20px;
+    }
+
+    .nf-card-header h2{
+        font-size:27px;
+    }
+
+    .nf-form-options{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+    }
+
+    .nf-social-row{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:480px){
+
+    .nf-left-content h1{
+        font-size:32px;
+    }
+
+    .nf-feature{
+        grid-template-columns:45px 1fr;
+        gap:13px;
+    }
+
+    .nf-feature i{
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .nf-main-btn{
+        height:56px;
+    }
+    
+}
