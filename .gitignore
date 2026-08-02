@@ -48,3 +48,9 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
+# Local Tomcat server (do not push to GitHub)
+apache-tomcat-*/
+
+# Local image resources (large binary files)
+images database/
