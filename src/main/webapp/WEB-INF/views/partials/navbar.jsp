@@ -155,9 +155,30 @@
 
 </header>
 
-<!-- MOBILE NAVBAR RESPONSIVENESS STYLES -->
+<!-- DESKTOP AND MOBILE RESPONSIVENESS STYLES -->
 <style>
-@media (max-width: 768px) {
+/* FULL DESKTOP MODE (SYSTEMS & LAPTOPS > 768px) */
+@media screen and (min-width: 769px) {
+    .nf-main-header {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 16px 55px !important;
+    }
+    .nf-main-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 25px !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+    .nf-header-actions {
+        width: auto !important;
+    }
+}
+
+/* MOBILE MODE (PHONES & TABLETS <= 768px) */
+@media screen and (max-width: 768px) {
     .nf-main-header {
         flex-direction: column;
         gap: 12px;
