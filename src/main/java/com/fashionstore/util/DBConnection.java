@@ -14,10 +14,16 @@ public class DBConnection {
 
                 Class.forName(DBConfig.DRIVER);
 
+                String currentUrl = DBConfig.getUrl();
+                String currentUser = DBConfig.USERNAME;
+                String currentPass = DBConfig.PASSWORD;
+
+                System.out.println("Connecting to Database URL: " + currentUrl);
+
                 connection = DriverManager.getConnection(
-                        DBConfig.URL,
-                        DBConfig.USERNAME,
-                        DBConfig.PASSWORD
+                        currentUrl,
+                        currentUser,
+                        currentPass
                 );
 
                 System.out.println("Database Connected Successfully!");
