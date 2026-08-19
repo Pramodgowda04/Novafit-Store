@@ -343,16 +343,6 @@ body {
     z-index: 9999;
 }
 
-/* MOBILE RESPONSIVENESS */
-@media (max-width: 768px) {
-    .admin-header { flex-direction: column; gap: 15px; text-align: center; padding: 15px 20px; }
-    .admin-nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .title-actions-bar { flex-direction: column; gap: 15px; align-items: stretch; text-align: center; }
-    .btn-add-product { justify-content: center; }
-    .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-    .product-img-box { height: 180px; }
-    .modal-box { padding: 20px; }
-}
 </style>
 </head>
 

@@ -181,142 +181,41 @@
     </a>
 </div>
 
-<!-- DESKTOP AND MOBILE RESPONSIVENESS STYLES -->
+<!-- DEFAULT FULL DESKTOP MODE STYLES -->
 <style>
-/* DOCK DEFAULT HIDDEN */
 .nf-mobile-bottom-dock {
-    display: none;
+    display: none !important;
 }
 
-/* FULL DESKTOP MODE (SYSTEMS & LAPTOPS > 768px) */
-@media screen and (min-width: 769px) {
-    .nf-main-header {
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 16px 55px !important;
-    }
-    .nf-main-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 25px !important;
-        overflow: visible !important;
-        white-space: normal !important;
-    }
-    .nf-header-actions {
-        width: auto !important;
-    }
+.nf-main-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 16px 55px !important;
+    background: #ffffff !important;
 }
 
-/* MOBILE APP MODE (PHONES & TABLETS <= 768px) */
-@media screen and (max-width: 768px) {
-    body {
-        padding-bottom: 70px !important;
-    }
-    .nf-main-header {
-        flex-direction: column;
-        gap: 12px;
-        padding: 12px 18px;
-        background: #ffffff;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    .nf-main-nav {
-        display: flex;
-        overflow-x: auto;
-        width: 100%;
-        padding-bottom: 8px;
-        white-space: nowrap;
-        gap: 10px;
-        -webkit-overflow-scrolling: touch;
-    }
-    .nf-main-nav a {
-        background: #f5f5f7;
-        color: #111;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 0.82rem;
-        font-weight: 700;
-        text-decoration: none;
-    }
-    .nf-header-actions {
-        width: 100%;
-        justify-content: space-between;
-        gap: 8px;
-    }
-    .nf-nav-search {
-        flex: 1;
-    }
-    .nf-nav-search input {
-        width: 100%;
-        border-radius: 20px;
-    }
-    .nf-top-offer-bar {
-        padding: 0 15px;
-        font-size: 0.75rem;
-    }
+.nf-main-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 25px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+}
 
-    /* MOBILE BOTTOM DOCK */
-    .nf-mobile-bottom-dock {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 62px;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-top: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.08);
-        justify-content: space-around;
-        align-items: center;
-        z-index: 99999;
-        padding: 6px 0;
-    }
-    .dock-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: #666;
-        font-size: 0.72rem;
-        font-weight: 700;
-        gap: 3px;
-        position: relative;
-        flex: 1;
-        transition: color 0.3s ease;
-    }
-    .dock-item i {
-        font-size: 1.25rem;
-    }
-    .dock-item:hover {
-        color: #111;
-    }
-    .dock-badge {
-        position: absolute;
-        top: -2px;
-        right: 22%;
-        background: #ff385c;
-        color: #fff;
-        font-size: 0.65rem;
-        font-weight: 800;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.nf-main-nav a {
+    background: transparent !important;
+    color: #111 !important;
+    padding: 0 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
 
-    /* MOBILE PRODUCT GRID 2-COLUMN */
-    .product-grid, .products-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        padding: 0 10px !important;
-    }
-    .product-card {
-        border-radius: 16px !important;
-    }
+.nf-header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: auto !important;
 }
 </style>
