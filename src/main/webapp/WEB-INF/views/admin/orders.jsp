@@ -29,6 +29,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Order Management - NOVAFIT</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -293,6 +294,19 @@ body {
     font-weight: 900;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 9999;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .admin-header { flex-direction: column; gap: 15px; text-align: center; padding: 15px 20px; }
+    .admin-nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .order-body-grid { grid-template-columns: 1fr; }
+    .order-card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .order-card-footer { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .status-update-form { width: 100%; flex-direction: column; align-items: stretch; }
+    .input-reason { width: 100% !important; }
+    .filter-bar { overflow-x: auto; flex-wrap: nowrap; }
 }
 </style>
 </head>

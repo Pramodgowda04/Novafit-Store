@@ -154,3 +154,37 @@
     </div>
 
 </header>
+
+<!-- MOBILE NAVBAR RESPONSIVENESS STYLES -->
+<style>
+@media (max-width: 768px) {
+    .nf-main-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 18px;
+    }
+    .nf-main-nav {
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 6px;
+        white-space: nowrap;
+        gap: 12px;
+    }
+    .nf-header-actions {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    .nf-nav-search {
+        flex: 1;
+    }
+    .nf-nav-search input {
+        width: 100%;
+    }
+    .nf-top-offer-bar {
+        padding: 0 15px;
+        font-size: 0.75rem;
+    }
+}
+</style>

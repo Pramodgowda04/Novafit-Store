@@ -16,6 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Product Inventory - NOVAFIT</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -340,6 +341,17 @@ body {
     font-weight: 900;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 9999;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .admin-header { flex-direction: column; gap: 15px; text-align: center; padding: 15px 20px; }
+    .admin-nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .title-actions-bar { flex-direction: column; gap: 15px; align-items: stretch; text-align: center; }
+    .btn-add-product { justify-content: center; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+    .product-img-box { height: 180px; }
+    .modal-box { padding: 20px; }
 }
 </style>
 </head>
