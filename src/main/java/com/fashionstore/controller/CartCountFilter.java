@@ -37,8 +37,17 @@ public class CartCountFilter implements Filter {
             throws IOException, ServletException {
         
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String uri = httpRequest.getRequestURI().toLowerCase();
+
+        // Skip DB queries for static assets to make page loading lightning fast!
+        if (uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".png") || 
+            uri.endsWith(".jpg") || uri.endsWith(".jpeg") || uri.endsWith(".gif") || 
+            uri.endsWith(".svg") || uri.endsWith(".ico") || uri.endsWith(".woff") || uri.endsWith(".woff2")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         HttpSession session = httpRequest.getSession(true);
-        
         int cartItemCount = 0;
         
         if (session != null && session.getAttribute("userId") != null) {
