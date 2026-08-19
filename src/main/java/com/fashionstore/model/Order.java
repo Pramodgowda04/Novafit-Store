@@ -8,11 +8,20 @@ public class Order {
     private int userId;
     private double totalAmount;
     private String status;
+    private String cancellationReason;
     private Timestamp createdAt;
 
     // DEFAULT CONSTRUCTOR
     public Order() {
 
+    }
+
+    public String getCancellationReason() {
+        return cancellationReason;
+    }
+
+    public void setCancellationReason(String cancellationReason) {
+        this.cancellationReason = cancellationReason;
     }
 
     // GET ID

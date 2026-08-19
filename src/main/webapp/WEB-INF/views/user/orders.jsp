@@ -1840,7 +1840,7 @@ body{
                     <i class="fa-solid fa-circle-xmark"></i>
                     <div>
                         <h4>Order Cancelled</h4>
-                        <p>This order was cancelled and is no longer active.</p>
+                        <p><%= (order.getCancellationReason() != null && !order.getCancellationReason().trim().isEmpty()) ? safe(order.getCancellationReason()) : "This order was cancelled and is no longer active." %></p>
                     </div>
                 </div>
 

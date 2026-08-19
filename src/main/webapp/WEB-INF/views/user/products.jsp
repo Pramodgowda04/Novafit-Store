@@ -158,20 +158,17 @@
             <i class="fa-regular fa-user"></i>
         </a>
 
-        <a href="<%= contextPath %>/<%= isLoggedIn ? "profile" : "login" %>" class="nav-icon">
-            <i class="fa-regular fa-heart"></i>
+        <a href="<%= contextPath %>/wishlist" class="cart-icon" title="Wishlist">
+            <i class="fa-solid fa-heart" style="color: #ff385c;"></i>
+            <span class="nav-wishlist-badge">${sessionScope.wishlistCount != null ? sessionScope.wishlistCount : 0}</span>
         </a>
 
-        <a href="<%= contextPath %>/cart" class="cart-icon">
+        <a href="<%= contextPath %>/cart" class="cart-icon" title="Cart">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span>${globalCartItemCount != null ? globalCartItemCount : 0}</span>
+            <span class="nav-cart-badge">${sessionScope.globalCartItemCount != null ? sessionScope.globalCartItemCount : 0}</span>
         </a>
 
         <% if (isLoggedIn) { %>
-            <a href="<%= contextPath %>/profile" class="user-pill">
-                Hi, <%= safe(loggedUserName) %>
-            </a>
-
             <a href="<%= contextPath %>/logout" class="logout-btn">
                 Logout
             </a>
@@ -410,9 +407,14 @@
             <div class="product-grid">
 
                 <%
+                    com.fashionstore.dao.WishlistDAO wishlistDAO = new com.fashionstore.dao.impl.WishlistDAOImpl();
+                    int currentUserId = isLoggedIn ? (Integer) session.getAttribute("userId") : 0;
+
                     if (products != null && !products.isEmpty()) {
 
                         for (Product product : products) {
+
+                            boolean isWishlisted = wishlistDAO.isInWishlist(currentUserId, product.getId());
 
                             String imagePath = product.getImage();
 
@@ -436,9 +438,13 @@
 
                         <span class="product-badge">NEW</span>
 
-                        <a href="<%= contextPath %>/<%= isLoggedIn ? "profile" : "login" %>" class="wishlist-btn">
-                            <i class="fa-regular fa-heart"></i>
-                        </a>
+                        <button type="button" class="wishlist-btn <%= isWishlisted ? "active-wishlist" : "" %>" onclick="toggleWishlist(this, <%= product.getId() %>)" title="<%= isWishlisted ? "Remove from Wishlist" : "Save to Wishlist" %>" style="border:none; background:none; cursor:pointer;">
+                            <% if (isWishlisted) { %>
+                                <i class="fa-solid fa-heart" style="color: #ff385c; font-size: 1.25rem;"></i>
+                            <% } else { %>
+                                <i class="fa-regular fa-heart" style="color: #666; font-size: 1.25rem;"></i>
+                            <% } %>
+                        </button>
 
                     </div>
 
@@ -562,6 +568,80 @@
 </section>
 
 <jsp:include page="../partials/footer.jsp"/>
+
+<script>
+function toggleWishlist(btn, productId) {
+    const isWishlisted = btn.classList.contains('active-wishlist') || btn.querySelector('.fa-solid');
+    const icon = btn.querySelector('i');
+
+    if (isWishlisted) {
+        btn.classList.remove('active-wishlist');
+        btn.title = "Save to Wishlist";
+        icon.className = "fa-regular fa-heart";
+        icon.style.color = "#666";
+        showToast("Removed from Wishlist", "#333");
+    } else {
+        btn.classList.add('active-wishlist');
+        btn.title = "Remove from Wishlist";
+        icon.className = "fa-solid fa-heart";
+        icon.style.color = "#ff385c";
+        showToast("Added to Wishlist 💖", "#ff385c");
+    }
+
+    const contextPath = '<%= contextPath %>';
+    fetch(contextPath + '/wishlist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: 'action=toggle&productId=' + productId + '&ajax=true'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'unauthorized') {
+            if (isWishlisted) {
+                btn.classList.add('active-wishlist');
+                icon.className = "fa-solid fa-heart";
+                icon.style.color = "#ff385c";
+            } else {
+                btn.classList.remove('active-wishlist');
+                icon.className = "fa-regular fa-heart";
+                icon.style.color = "#666";
+            }
+            showToast("Please Sign In to save items 🔑", "#ff385c");
+            setTimeout(() => {
+                window.location.href = data.redirect;
+            }, 1000);
+        } else if (data.status === 'success') {
+            const badges = document.querySelectorAll('.nav-wishlist-badge');
+            badges.forEach(badge => {
+                badge.textContent = data.wishlistCount;
+            });
+        }
+    })
+    .catch(error => console.error('Error toggling wishlist:', error));
+}
+
+function showToast(message, color) {
+    let toast = document.getElementById('wishlistToast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'wishlistToast';
+        toast.style.cssText = 'position: fixed; bottom: 30px; right: 30px; background: #111; color: #fff; padding: 14px 24px; border-radius: 30px; font-family: Arial, sans-serif; font-weight: 700; font-size: 0.95rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 10000; display: flex; align-items: center; gap: 10px; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);';
+        document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = '<span style="width:10px; height:10px; border-radius:50%; background:' + color + '; display:inline-block;"></span> ' + message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+    }, 2500);
+}
+</script>
 
 </body>
 </html>

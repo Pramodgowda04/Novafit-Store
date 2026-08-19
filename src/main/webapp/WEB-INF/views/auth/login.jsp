@@ -201,6 +201,14 @@
                     <a href="<%= request.getContextPath() %>/register">Register</a>
                 </p>
 
+                <div style="margin-top: 22px; padding-top: 18px; border-top: 1px dashed #e0e0e0; text-align: center;">
+                    <a href="<%= request.getContextPath() %>/admin/login" 
+                       style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #111111; color: #c89b3c; text-decoration: none; padding: 10px 22px; border-radius: 25px; font-weight: 800; font-size: 0.85rem; border: 1px solid rgba(200, 155, 60, 0.4); transition: all 0.3s ease; box-shadow: 0 6px 18px rgba(0,0,0,0.12);">
+                        <i class="fa-solid fa-shield-halved" style="color: #c89b3c;"></i>
+                        ADMIN PORTAL 👑
+                    </a>
+                </div>
+
             </div>
 
         </div>

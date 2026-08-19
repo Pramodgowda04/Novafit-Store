@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebFilter(urlPatterns = {"/home", "/cart", "/checkout", "/orders", "/products", "/profile", "/product-details"})
+@WebFilter(urlPatterns = {"/*"})
 public class CartCountFilter implements Filter {
 
     private CartDAO cartDAO;
@@ -37,20 +37,31 @@ public class CartCountFilter implements Filter {
             throws IOException, ServletException {
         
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpSession session = httpRequest.getSession(false);
+        HttpSession session = httpRequest.getSession(true);
         
         int cartItemCount = 0;
         
         if (session != null && session.getAttribute("userId") != null) {
-            int userId = (Integer) session.getAttribute("userId");
-            Cart cart = cartDAO.getCartByUserId(userId);
-            if (cart != null) {
-                List<CartItem> items = cartItemDAO.getCartItemsByCartId(cart.getId());
-                cartItemCount = items.size();
+            try {
+                int userId = (Integer) session.getAttribute("userId");
+                Cart cart = cartDAO.getCartByUserId(userId);
+                if (cart != null) {
+                    List<CartItem> items = cartItemDAO.getCartItemsByCartId(cart.getId());
+                    if (items != null) {
+                        for (CartItem item : items) {
+                            cartItemCount += item.getQuantity();
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                cartItemCount = 0;
             }
         }
         
         httpRequest.setAttribute("globalCartItemCount", cartItemCount);
+        session.setAttribute("globalCartItemCount", cartItemCount);
+        session.setAttribute("cartCount", cartItemCount);
+
         chain.doFilter(request, response);
     }
 

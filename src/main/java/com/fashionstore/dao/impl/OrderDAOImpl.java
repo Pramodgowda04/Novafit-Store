@@ -61,6 +61,8 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setStatus(rs.getString("status"));
                 order.setCreatedAt(rs.getTimestamp("created_at"));
 
+                try { order.setCancellationReason(rs.getString("cancellation_reason")); } catch (Exception ex) {}
+
                 return order;
             }
 
@@ -96,12 +98,50 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setTotalAmount(rs.getDouble("total_amount"));
                 order.setStatus(rs.getString("status"));
                 order.setCreatedAt(rs.getTimestamp("created_at"));
+                try { order.setCancellationReason(rs.getString("cancellation_reason")); } catch (Exception ex) {}
 
                 orderList.add(order);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        return orderList;
+    }
+
+    // GET ALL ORDERS FOR ADMIN
+    @Override
+    public List<Order> getAllOrders() {
+
+        List<Order> orderList = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+
+                String sql = "SELECT * FROM orders ORDER BY order_id DESC";
+
+                PreparedStatement ps = conn.prepareStatement(sql);
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+
+                    Order order = new Order();
+
+                    order.setId(rs.getInt("order_id"));
+                    order.setUserId(rs.getInt("user_id"));
+                    order.setTotalAmount(rs.getDouble("total_amount"));
+                    order.setStatus(rs.getString("status"));
+                    order.setCreatedAt(rs.getTimestamp("created_at"));
+                    try { order.setCancellationReason(rs.getString("cancellation_reason")); } catch (Exception ex) {}
+
+                    orderList.add(order);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return orderList;
@@ -127,6 +167,41 @@ public class OrderDAOImpl implements OrderDAO {
         }
 
         return false;
+    }
+
+    // UPDATE ORDER STATUS WITH CANCELLATION REASON
+    @Override
+    public boolean updateOrderStatus(int orderId, String status, String cancellationReason) {
+        addCancellationReasonColumnIfNotExists();
+
+        if (conn != null) {
+            try {
+                String sql = "UPDATE orders SET status=?, cancellation_reason=? WHERE order_id=?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, status);
+                ps.setString(2, cancellationReason);
+                ps.setInt(3, orderId);
+                if (ps.executeUpdate() > 0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return updateOrderStatus(orderId, status);
+    }
+
+    private void addCancellationReasonColumnIfNotExists() {
+        if (conn != null) {
+            try {
+                String sql = "ALTER TABLE orders ADD COLUMN cancellation_reason VARCHAR(255) DEFAULT NULL";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.executeUpdate();
+            } catch (Exception e) {
+                // Column already exists
+            }
+        }
     }
 
     // DELETE ORDER

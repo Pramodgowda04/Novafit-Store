@@ -91,15 +91,6 @@
 
         </div>
 
-        <div class="cart-hero-icon">
-            <div class="cart-ring ring-one"></div>
-            <div class="cart-icon">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span>${globalCartItemCount != null ? globalCartItemCount : 0}</span>
-          </div>
-
-        <div class="cart-dot-pattern"></div>
-
     </section>
 
     <!-- SERVICE STRIP -->
@@ -156,10 +147,6 @@
                             Cart Items
                             <span>(<%= cartCount %> item<%= cartCount == 1 ? "" : "s" %>)</span>
                         </h2>
-                    </div>
-
-                    <div class="bag-icon">
-                        <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                 </div>
 

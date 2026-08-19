@@ -15,29 +15,52 @@ body{
     overflow-x:hidden;
 }
 
-/* TOP BAR */
+/* TOP BAR RIGHT-TO-LEFT MARQUEE */
 
-.top-bar{
-    min-height:42px;
-    background:#111;
-    color:#fff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:24px;
-    padding:0 55px;
-    font-size:14px;
-    font-weight:700;
+.top-bar {
+    width: 100%;
+    min-height: 42px;
+    height: 42px;
+    background: #111111;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(200, 155, 60, 0.35);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0;
 }
 
-.top-bar i{
-    color:#c89b3c;
-    margin-right:8px;
+.top-bar-marquee {
+    display: flex;
+    gap: 60px;
+    white-space: nowrap;
+    width: max-content;
+    animation: top-bar-scroll 25s linear infinite;
 }
 
-.top-bar span{
-    color:#c89b3c;
-    font-weight:900;
+.top-bar-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes top-bar-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.top-bar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #f5f5f5;
+}
+
+.top-bar-item span {
+    color: #c89b3c;
+    font-weight: 900;
 }
 
 .top-links{

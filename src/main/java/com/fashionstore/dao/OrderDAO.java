@@ -12,7 +12,11 @@ public interface OrderDAO {
 
     List<Order> getOrdersByUserId(int userId);
 
+    List<Order> getAllOrders();
+
     boolean updateOrderStatus(int orderId, String status);
+
+    boolean updateOrderStatus(int orderId, String status, String cancellationReason);
 
     boolean deleteOrder(int orderId);
 }

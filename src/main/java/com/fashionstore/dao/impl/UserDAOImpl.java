@@ -18,7 +18,7 @@ public class UserDAOImpl implements UserDAO {
 
         try {
 
-            String sql = "INSERT INTO users (name, email, password, phone, address) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (name, email, password, phone, address, role) VALUES (?, ?, ?, ?, ?, 'USER') ON DUPLICATE KEY UPDATE name=VALUES(name)";
 
             PreparedStatement ps = conn.prepareStatement(sql);
 

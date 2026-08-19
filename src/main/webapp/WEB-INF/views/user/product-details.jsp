@@ -51,6 +51,11 @@
 
     String productImage = imagePath(contextPath, product.getImage());
     boolean hasSizes = sizes != null && !sizes.isEmpty();
+
+    boolean isLoggedInDetails = session.getAttribute("userId") != null;
+    int currentUserIdDetails = isLoggedInDetails ? (Integer) session.getAttribute("userId") : 1;
+    com.fashionstore.dao.WishlistDAO wishlistDAODetails = new com.fashionstore.dao.impl.WishlistDAOImpl();
+    boolean isWishlistedDetails = wishlistDAODetails.isInWishlist(currentUserIdDetails, product.getId());
 %>
 
 <!DOCTYPE html>
@@ -223,10 +228,19 @@
                         Add to Cart
                     </button>
 
-                    <a href="#" class="wishlist-btn">
-                        <i class="fa-regular fa-heart"></i>
-                        Add to Wishlist
-                    </a>
+                    <form action="<%= contextPath %>/wishlist" method="post" style="display:inline;">
+                        <input type="hidden" name="action" value="toggle">
+                        <input type="hidden" name="productId" value="<%= product.getId() %>">
+                        <button type="submit" class="wishlist-btn" style="<%= isWishlistedDetails ? "background:#fff0f3; color:#ff385c; border:1px solid #ff385c;" : "" %>">
+                            <% if (isWishlistedDetails) { %>
+                                <i class="fa-solid fa-heart" style="color: #ff385c;"></i>
+                                Saved in Wishlist
+                            <% } else { %>
+                                <i class="fa-regular fa-heart"></i>
+                                Add to Wishlist
+                            <% } %>
+                        </button>
+                    </form>
 
                 </div>
 

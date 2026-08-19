@@ -20,6 +20,16 @@
             navCartCount = 0;
         }
     }
+
+    if (isLoggedIn && session.getAttribute("wishlistCount") == null) {
+        try {
+            int userId = (Integer) session.getAttribute("userId");
+            com.fashionstore.dao.WishlistDAO navWishlistDAO = new com.fashionstore.dao.impl.WishlistDAOImpl();
+            session.setAttribute("wishlistCount", navWishlistDAO.getWishlistCount(userId));
+        } catch (Exception e) {
+            session.setAttribute("wishlistCount", 0);
+        }
+    }
 %>
 
 <!-- NOVAFIT TOP OFFER BAR -->
@@ -55,6 +65,11 @@
     <a href="<%= request.getContextPath() %>/home" class="nf-site-logo">
         NOVA<span>FIT</span>
         <small>FASHION STORE</small>
+    </a>
+
+    <a href="javascript:history.back()" class="nf-nav-back-btn" title="Go Back" style="display:inline-flex; align-items:center; gap:6px; background:rgba(0,0,0,0.06); color:#111; text-decoration:none; padding:6px 14px; border-radius:20px; font-weight:700; font-size:0.82rem; border:1px solid rgba(0,0,0,0.15); transition:all 0.3s ease; margin-left:10px;">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back</span>
     </a>
 
     <nav class="nf-main-nav">
@@ -104,8 +119,9 @@
             <i class="fa-regular fa-user"></i>
         </a>
 
-        <a href="#" class="nf-header-icon" title="Wishlist">
-            <i class="fa-regular fa-heart"></i>
+        <a href="<%= request.getContextPath() %>/wishlist" class="cart-icon" title="Wishlist">
+            <i class="fa-solid fa-heart" style="color: #ff385c;"></i>
+            <span class="nav-wishlist-badge">${sessionScope.wishlistCount != null ? sessionScope.wishlistCount : 0}</span>
         </a>
 
         <a href="<%= request.getContextPath() %>/cart" class="cart-icon" title="Cart">
@@ -113,11 +129,15 @@
             <span>${globalCartItemCount != null ? globalCartItemCount : 0}</span>
         </a>
 
-        <% if (isLoggedIn) { %>
+        <% boolean isUserAdmin = session.getAttribute("isAdmin") != null && (Boolean) session.getAttribute("isAdmin"); %>
 
-            <a href="<%= request.getContextPath() %>/profile" class="nf-user-pill">
-                Hi, <%= loggedUserName %>
+        <% if (isUserAdmin) { %>
+            <a href="<%= request.getContextPath() %>/admin/products" style="background:#111; color:#c89b3c; border:1px solid #c89b3c; padding:7px 16px; border-radius:20px; font-weight:800; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; gap:6px; box-shadow: 0 4px 12px rgba(200,155,60,0.2);">
+                <i class="fa-solid fa-crown" style="color:#c89b3c;"></i> ADMIN INVENTORY
             </a>
+        <% } %>
+
+        <% if (isLoggedIn) { %>
 
             <a href="<%= request.getContextPath() %>/logout" class="nf-logout-btn">
                 Logout
