@@ -79,6 +79,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= pageTitle %> - NOVAFIT Fashion Store</title>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/product.css?v=1001">
