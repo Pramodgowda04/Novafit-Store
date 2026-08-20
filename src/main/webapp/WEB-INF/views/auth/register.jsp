@@ -177,9 +177,9 @@
 
                     <p id="passwordError" class="nf-password-error"></p>
 
-                    <label class="nf-check nf-terms" style="display:flex; align-items:center; gap:8px; cursor:pointer; margin: 15px 0;">
-                        <input type="checkbox" name="terms" id="termsCheck" required value="accepted">
-                        <span style="font-size: 0.85rem; color: #444;">
+                    <label class="nf-terms-container" style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; margin: 16px 0 20px; width:100%; text-align:left;">
+                        <input type="checkbox" name="terms" id="termsCheck" required value="accepted" style="width:18px; height:18px; accent-color:#c89b3c; margin-top:2px; flex-shrink:0; cursor:pointer;">
+                        <span style="font-size: 0.88rem; color: #444; line-height: 1.4; flex: 1;">
                             I agree to the 
                             <a href="javascript:void(0)" onclick="openTermsModal()" style="color:#c89b3c; font-weight:800; text-decoration:underline;">
                                 Terms of Service & Privacy Policy
