@@ -26,6 +26,13 @@
 
         image = image.trim();
 
+        if (image.startsWith("http://") || image.startsWith("https://")) {
+            if (image.contains("unsplash.com") && !image.contains("w=")) {
+                return image + (image.contains("?") ? "&w=600&q=75&auto=format" : "?w=600&q=75&auto=format");
+            }
+            return image;
+        }
+
         if (image.startsWith("/")) {
             return contextPath + image;
         }
@@ -55,7 +62,7 @@
     boolean isLoggedInDetails = session.getAttribute("userId") != null;
     int currentUserIdDetails = isLoggedInDetails ? (Integer) session.getAttribute("userId") : 1;
     com.fashionstore.dao.WishlistDAO wishlistDAODetails = new com.fashionstore.dao.impl.WishlistDAOImpl();
-    boolean isWishlistedDetails = wishlistDAODetails.isInWishlist(currentUserIdDetails, product.getId());
+    boolean isWishlistedDetails = isLoggedInDetails && wishlistDAODetails.isInWishlist(currentUserIdDetails, product.getId());
 %>
 
 <!DOCTYPE html>
@@ -65,6 +72,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= safe(product.getName()) %> - NOVAFIT Fashion Store</title>
 
+<link rel="preload" as="image" href="<%= productImage %>">
 <link rel="stylesheet" href="<%= contextPath %>/assets/css/product-details.css?v=10">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
