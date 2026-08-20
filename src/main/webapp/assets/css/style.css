@@ -1,3 +1,9 @@
+/* UNIVERSAL BUTTERY-SMOOTH GPU-ACCELERATED SCROLLING */
+html {
+    scroll-behavior: smooth !important;
+    -webkit-text-size-adjust: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +14,24 @@
 body {
     background: #f8f9fa;
     color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* GPU-ACCELERATED HARDWARE COMPOSITING FOR STICKY HEADERS & FOOTERS */
+.nf-main-header, .admin-header, .top-bar, .nf-top-offer-bar {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* SMOOTH TOUCH SCROLLING FOR ALL SCROLLABLE CONTAINERS */
+.filter-bar, .nf-main-nav, .thumb-column, .top-bar-marquee, .orders-list, .products-grid {
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* BACK BUTTON */

@@ -181,8 +181,14 @@
     </a>
 </div>
 
-<!-- DEFAULT FULL DESKTOP MODE STYLES -->
+<!-- DEFAULT FULL DESKTOP MODE & UNIVERSAL SMOOTH SCROLLING STYLES -->
 <style>
+html {
+    scroll-behavior: smooth !important;
+}
+body {
+    overflow-x: hidden;
+}
 .nf-mobile-bottom-dock {
     display: none !important;
 }
