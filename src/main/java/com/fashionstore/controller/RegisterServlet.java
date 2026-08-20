@@ -33,6 +33,14 @@ public class RegisterServlet extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
+        String terms = request.getParameter("terms");
+        if (terms == null || terms.trim().isEmpty()) {
+            request.setAttribute("error", "You must agree to the Terms of Service & Privacy Policy to register.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp")
+                   .forward(request, response);
+            return;
+        }
+
         User user = new User();
 
         user.setName(request.getParameter("name"));
@@ -45,9 +53,11 @@ public class RegisterServlet extends HttpServlet {
         boolean status = userDAO.registerUser(user);
 
         if (status) {
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/login?registered=true");
         } else {
-            response.sendRedirect(request.getContextPath() + "/register");
+            request.setAttribute("error", "Email address already registered. Please login or try another email.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp")
+                   .forward(request, response);
         }
     }
 }
