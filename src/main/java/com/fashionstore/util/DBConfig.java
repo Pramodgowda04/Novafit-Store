@@ -15,7 +15,7 @@ public class DBConfig {
 
         String host = getEnv("DB_HOST", "localhost");
         String port = getEnv("DB_PORT", "3306");
-        String dbName = getEnv("DB_NAME", "defaultdb");
+        String dbName = getEnv("DB_NAME", "fashion_store");
 
         return "jdbc:mysql://" + host + ":" + port + "/" + dbName + "?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true";
     }
